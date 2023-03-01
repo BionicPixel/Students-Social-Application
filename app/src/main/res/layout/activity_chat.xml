@@ -23,8 +23,8 @@
             android:layout_marginLeft="-140dp"
             android:backgroundTint="@color/white"
             android:clickable="true"
-            android:clipToOutline="true"
             android:src="@drawable/back" />
+        <!--            android:clipToOutline="true"-->
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"

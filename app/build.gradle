@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    compileSdk 31
+    compileSdk 28
 
     buildFeatures {
         viewBinding true
@@ -13,7 +13,7 @@ android {
     defaultConfig {
         applicationId "com.example.social_media_chat_app"
         minSdk 21
-        targetSdk 31
+        targetSdk 28
         versionCode 1
         versionName "1.0"
 

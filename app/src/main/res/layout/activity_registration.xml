@@ -49,17 +49,17 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="@dimen/_270sdp"
-            android:layout_height="319dp"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
             app:cardCornerRadius="@dimen/_20sdp">
 
             <LinearLayout
-                android:layout_width="@dimen/_270sdp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/gradient_color"
                 android:orientation="vertical">
-
 
                 <EditText
                     android:id="@+id/reg_name"
