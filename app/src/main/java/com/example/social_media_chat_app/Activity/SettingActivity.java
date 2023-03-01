@@ -37,7 +37,7 @@ import com.squareup.picasso.Picasso;
 public class SettingActivity extends AppCompatActivity {
 
     ImageView setting_image;
-    EditText setting_name,setting_status;
+    EditText setting_name,setting_status,setting_branch,setting_year;
     TextView save,btn_logout;
     FirebaseAuth auth;
     FirebaseDatabase database;
@@ -138,6 +138,8 @@ public class SettingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 progressDialog.show();
                String name= setting_name.getText().toString();
+                String branch= setting_branch.getText().toString();
+                String year= setting_year.getText().toString();
                String status= setting_status.getText().toString();
 
                 if(selectedImageUri!=null){
@@ -148,7 +150,7 @@ public class SettingActivity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Uri uri) {
                                     String finalImageUri=uri.toString();
-                                    Users users= new Users(auth.getUid(), name, email, finalImageUri, status);
+                                    Users users= new Users(auth.getUid(), name, email, finalImageUri, status, branch, year);
                                     reference.setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
@@ -173,7 +175,7 @@ public class SettingActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(Uri uri) {
                             String finalImageUri=uri.toString();
-                            Users users= new Users(auth.getUid(), name, email, finalImageUri, status);
+                            Users users= new Users(auth.getUid(), name, email, finalImageUri, status, branch, year);
                             reference.setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {

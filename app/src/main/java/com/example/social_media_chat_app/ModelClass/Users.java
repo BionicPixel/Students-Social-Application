@@ -2,11 +2,7 @@ package com.example.social_media_chat_app.ModelClass;
 
 public class Users {
 
-    public String uid;
-    public String name;
-    public String email;
-    public String imageUri;
-    public String status;
+    public String uid, name, email, imageUri, status, branch, year;
 
     public Users() {
     }
@@ -15,12 +11,31 @@ public class Users {
         return uid;
     }
 
-    public Users(String uid, String name, String email, String imageUri, String status) {
+    public Users(String uid, String name, String email, String imageUri, String status, String branch, String year) {
         this.uid = uid;
         this.name = name;
         this.email = email;
         this.imageUri = imageUri;
         this.status=status;
+        this.branch = branch;
+        this.year = year;
+        System.out.println(toString());
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public String getBranch() {
+        return branch;
+    }
+
+    public void setBranch(String branch) {
+        this.branch = branch;
     }
 
     public String getStatus() {
@@ -59,4 +74,16 @@ public class Users {
         this.imageUri = imageUri;
     }
 
+    @Override
+    public String toString() {
+        return "Users{" +
+                "uid='" + uid + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", imageUri='" + imageUri + '\'' +
+                ", status='" + status + '\'' +
+                ", branch='" + branch + '\'' +
+                ", year='" + year + '\'' +
+                '}';
+    }
 }

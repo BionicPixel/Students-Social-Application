@@ -35,7 +35,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class RegistrationActivity extends AppCompatActivity {
     TextView txt_signin, btn_SignUp;
     CircleImageView profile_image;
-    EditText reg_name, reg_email, reg_password, reg_cPassword;
+    EditText reg_name, reg_email, reg_password, reg_cPassword, reg_branch, reg_year;
     FirebaseAuth auth;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     Uri imageUri;
@@ -60,6 +60,8 @@ public class RegistrationActivity extends AppCompatActivity {
         profile_image=findViewById(R.id.profile_image);
         reg_email=findViewById(R.id.reg_email);
         reg_name=findViewById(R.id.reg_name);
+        reg_branch=findViewById(R.id.reg_branch);
+        reg_year=findViewById(R.id.reg_year);
         reg_password=findViewById(R.id.reg_pass);
         reg_cPassword=findViewById(R.id.reg_cPass);
         btn_SignUp=findViewById(R.id.btn_SignUp);
@@ -77,12 +79,14 @@ public class RegistrationActivity extends AppCompatActivity {
             public void onClick(View v) {
                 progressDialog.show();
                 String name=reg_name.getText().toString();
+                String branch=reg_branch.getText().toString();
+                String year=reg_year.getText().toString();
                 String email=reg_email.getText().toString();
                 String password=reg_password.getText().toString();
                 String cPassword=reg_cPassword.getText().toString();
                 String status="Hey there, I'm using this Application";
 
-                if(TextUtils.isEmpty(name) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password) || TextUtils.isEmpty(cPassword)){
+                if(TextUtils.isEmpty(name) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password) || TextUtils.isEmpty(cPassword) || TextUtils.isEmpty(branch) || TextUtils.isEmpty(branch)){
                     progressDialog.dismiss();
                     Toast.makeText(RegistrationActivity.this, "Please Enter Valid Data", Toast.LENGTH_SHORT).show();
                 }else if (!email.matches(emailPattern)){
@@ -112,7 +116,7 @@ public class RegistrationActivity extends AppCompatActivity {
                                                     @Override
                                                     public void onSuccess(Uri uri) {
                                                         imageURI=uri.toString();
-                                                        Users users=new Users(auth.getUid(), name, email, imageURI, status);
+                                                        Users users=new Users(auth.getUid(), name, email, imageURI, status, branch, year);
                                                         reference.setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                             @Override
                                                             public void onComplete(@NonNull Task<Void> task) {
@@ -135,7 +139,7 @@ public class RegistrationActivity extends AppCompatActivity {
                                 }else{
                                     String status="Hey there, I'm using this Application";
                                     imageURI="https://firebasestorage.googleapis.com/v0/b/social-media-chat-app-b02f3.appspot.com/o/profile_image.png?alt=media&token=cb783691-031f-458d-930c-e13d9522477e";
-                                    Users users=new Users(auth.getUid(), name, email, imageURI, status);
+                                    Users users=new Users(auth.getUid(), name, email, imageURI, status, branch, year);
                                     reference.setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
