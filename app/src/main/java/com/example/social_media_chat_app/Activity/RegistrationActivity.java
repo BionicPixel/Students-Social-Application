@@ -9,8 +9,11 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,12 +33,16 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class RegistrationActivity extends AppCompatActivity {
+public class RegistrationActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     TextView txt_signin, btn_SignUp;
     CircleImageView profile_image;
-    EditText reg_name, reg_email, reg_password, reg_cPassword, reg_branch, reg_year;
+    EditText reg_name, reg_email, reg_password, reg_cPassword;
+    Spinner reg_branch, reg_year;
     FirebaseAuth auth;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     Uri imageUri;
@@ -48,6 +55,33 @@ public class RegistrationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+
+
+        final Spinner b_spinner = findViewById(R.id.reg_branch);
+        final Spinner y_spinner = findViewById(R.id.reg_year);
+
+        b_spinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
+        y_spinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
+
+        List<String> b = new ArrayList<String>();
+        b.add("AIML");
+        b.add("COMPS");
+        b.add("IT");
+        b.add("MECH");
+
+        ArrayAdapter<String> b_dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, b);
+        b_dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        b_spinner.setAdapter(b_dataAdapter);
+
+        List<String>y = new ArrayList<String>();
+        y.add("FE");
+        y.add("SE");
+        y.add("TE");
+        y.add("BE");
+
+        ArrayAdapter<String> y_dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, y);
+        y_dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        y_spinner.setAdapter(y_dataAdapter);
 
         progressDialog= new ProgressDialog(this);
         progressDialog.setMessage("Please wait...");
@@ -79,12 +113,19 @@ public class RegistrationActivity extends AppCompatActivity {
             public void onClick(View v) {
                 progressDialog.show();
                 String name=reg_name.getText().toString();
-                String branch=reg_branch.getText().toString();
-                String year=reg_year.getText().toString();
+                String branch=String.valueOf(b_spinner.getSelectedItem());
+                String year=String.valueOf(y_spinner.getSelectedItem());
                 String email=reg_email.getText().toString();
                 String password=reg_password.getText().toString();
                 String cPassword=reg_cPassword.getText().toString();
                 String status="Hey there, I'm using this Application";
+
+                Intent b_intent= new Intent(RegistrationActivity.this,Branches.class);
+                b_intent.putExtra("data",String.valueOf(b_spinner.getSelectedItem()));
+                startActivity(b_intent);
+                Intent y_intent= new Intent(RegistrationActivity.this,Branches.class);
+                y_intent.putExtra("data",String.valueOf(y_spinner.getSelectedItem()));
+                startActivity(y_intent);
 
                 if(TextUtils.isEmpty(name) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password) || TextUtils.isEmpty(cPassword) || TextUtils.isEmpty(branch) || TextUtils.isEmpty(branch)){
                     progressDialog.dismiss();
@@ -195,5 +236,18 @@ public class RegistrationActivity extends AppCompatActivity {
                 profile_image.setImageURI(imageUri);
             }
         }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        String item = adapterView.getItemAtPosition(i).toString();
+
+        // Showing selected spinner item
+        Toast.makeText(adapterView.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }

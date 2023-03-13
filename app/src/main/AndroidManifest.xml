@@ -30,6 +30,7 @@
         <activity android:name=".Activity.LoginActivity" />
         <activity android:name=".Activity.StoriesActivity" />
         <activity android:name=".Activity.GroupChatActivity" />
+        <activity android:name=".Activity.Branches"/>
     </application>
 
 </manifest>

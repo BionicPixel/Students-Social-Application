@@ -31,10 +31,7 @@
                 android:textSize="@dimen/_25sdp"
                 android:textStyle="bold" />
 
-            <ImageView
-                android:layout_width="@dimen/_80sdp"
-                android:layout_height="@dimen/_80sdp"
-                android:background="@drawable/logo" />
+
 
         </LinearLayout>
 
@@ -136,39 +133,27 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <EditText
+                    <Spinner
                         android:id="@+id/reg_branch"
-                        android:layout_width="141dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_marginEnd="@dimen/_10sdp"
-                        android:layout_marginRight="@dimen/_5sdp"
-                        android:autofillHints="name"
+                        android:layout_width="160dp"
+                        android:layout_height="44dp"
+                        android:autofillHints="branch"
                         android:background="@drawable/edittext_shape"
                         android:fontFamily="@font/spartan_regular"
                         android:hint="branch..."
-                        android:padding="@dimen/_8sdp"
                         android:textColor="@color/black"
-                        android:textColorHint="#333333" />
+                        android:textColorHint="#333333"/>
 
-                    <EditText
+                    <Spinner
                         android:id="@+id/reg_year"
-                        android:layout_width="141dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_marginEnd="@dimen/_10sdp"
-                        android:layout_marginRight="@dimen/_10sdp"
-                        android:autofillHints="name"
+                        android:layout_width="160dp"
+                        android:layout_height="44dp"
+                        android:autofillHints="year"
                         android:background="@drawable/edittext_shape"
                         android:fontFamily="@font/spartan_regular"
                         android:hint="year..."
-                        android:padding="@dimen/_8sdp"
                         android:textColor="@color/black"
-                        android:textColorHint="#333333" />
+                        android:textColorHint="#333333"/>
 
                 </LinearLayout>
 
