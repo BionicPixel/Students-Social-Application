@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -36,6 +37,8 @@ import com.squareup.picasso.Picasso;
 
 public class SettingActivity extends AppCompatActivity {
 
+    TextView u,c;
+
     ImageView setting_image;
     EditText setting_name,setting_status,setting_branch,setting_year;
     TextView save,btn_logout;
@@ -50,6 +53,12 @@ public class SettingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
+
+        u=findViewById(R.id.udemy);
+        u.setMovementMethod(LinkMovementMethod.getInstance());
+        c=findViewById(R.id.coursera);
+        c.setMovementMethod(LinkMovementMethod.getInstance());
+
         if (Build.VERSION.SDK_INT >= 21) {
             Window window = this.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);

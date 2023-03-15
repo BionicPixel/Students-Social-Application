@@ -13,9 +13,5 @@ public class Branches extends RegistrationActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.branches);
 
-        TextView  textView=(TextView) findViewById(R.id.txt_bundle);
-        Bundle bundle=getIntent().getExtras();
-        String data=bundle.get("data").toString();
-        textView.setText(data);
     }
 }

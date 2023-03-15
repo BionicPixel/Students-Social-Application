@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">UndergradsAdda</string>
+    <string name="Udemy">Udemy
+        <a href="https://www.udemy.com/">udemy.com</a>
+    </string>
+    <string name="Coursera">Coursera
+        <a href="https://in.coursera.org/">   coursera.org</a>
+    </string>
+
 </resources>
